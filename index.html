@@ -278,7 +278,7 @@
         .right-sidebar {
             position: absolute;
             right: 15px;
-            bottom: 40px;
+            bottom: 240px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -335,8 +335,13 @@
             mask-image: linear-gradient(to bottom, transparent, black 15%);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%);
         }
-        .chat-container::-webkit-scrollbar { display: none; }
-
+        .chat-container {
+            position: absolute;
+            bottom: 230px; /* 往上移動，避開底部控制面板的高度 */
+            left: 15px;
+            width: 70%;
+            height: 180px;
+        
         .chat-row {
             display: flex;
             align-items: flex-start;
@@ -381,11 +386,15 @@
 
         /* --- 6. 底部控制面板 --- */
         .control-panel {
-            background-color: #1a1a1a;
-            padding: 10px 15px 25px 15px;
-            z-index: 30;
-            border-top: 1px solid #333;
-            flex-shrink: 0;
+            position: absolute; /* 改為絕對定位 */
+            bottom: 0;         /* 固定在底部 */
+            left: 0;
+            width: 100%;
+            background-color: rgba(26, 26, 26, 0.95); /* 加入一點透明度更有質感 */
+            backdrop-filter: blur(10px);              /* 背景模糊 */
+            padding: 10px 15px 30px 15px;             /* 增加底部間距避開手機手勢條 */
+            z-index: 100;                             /* 確保在最上層 */
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .balance-bar {
