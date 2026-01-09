@@ -37,7 +37,8 @@
         .app-container {
             width: 100%;
             max-width: 480px;
-            height: 100%;
+            height: 100vh; /* 使用視窗高度 */
+            height: -webkit-fill-available; /* 修正 iOS 高度問題 */
             background-color: #000;
             display: flex;
             flex-direction: column;
@@ -47,13 +48,16 @@
 
         /* --- 1. 直播舞台層 --- */
         .live-stage {
-            position: relative;
-            flex: 1;
+            position: absolute; /* 改為絕對定位或確保撐滿 */
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%; /* 確保高度撐滿 */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 1;
         }
 
         #bgVideo {
@@ -69,12 +73,13 @@
         }
 
         #mainVideo {
-            position: relative;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover; 
             z-index: 2;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .video-overlay-gradient {
